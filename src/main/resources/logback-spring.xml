@@ -18,12 +18,12 @@
     <property name="log.pattern"
               value="%d{yyyy-MM-dd HH:mm:ss:SSS}[%thread]%-5level%logger{50}-%msg%n"/>
     <!-- 控制台设置,控制台输出日志-->
-    <apperder name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <!-- 对日志进行格式化 -->
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
-    </apperder>
+    </appender>
     <!-- DEBAUG 级别的日志 -->
     <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender-->
     <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">

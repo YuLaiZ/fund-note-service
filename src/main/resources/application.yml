@@ -10,7 +10,7 @@ spring:
     active: #spring.profiles.active#
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url:
     username:
     password:
@@ -19,6 +19,7 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+    open-in-view: false
 
 logging:
   config: classpath:logback-spring.xml
