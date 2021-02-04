@@ -1,0 +1,24 @@
+server:
+  port: 8999
+  servlet:
+    application-display-name: fund-note-service
+    context-path: /
+    encoding:
+      charset: UTF-8
+spring:
+  profiles:
+    active: #spring.profiles.active#
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url:
+    username:
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+logging:
+  config: classpath:logback-spring.xml

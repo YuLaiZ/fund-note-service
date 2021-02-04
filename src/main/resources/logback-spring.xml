@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
-<!-- 日志输出规则  根据当前ROOT 级别，日志输出时，级别高于root默认的级别时  会输出 -->
-<!-- 以下每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志-->
-
-<!-- 属性描述 scan：性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true scanPeriod:设置监测配置文件是否有修改的时间间隔，
-如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。   debug:当此属性设置为true时，将打印出logback内部日志信息，
-实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--    <springProfile name="dev, test, prod">-->
+    <!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+    <!-- 日志输出规则  根据当前ROOT 级别，日志输出时，级别高于root默认的级别时  会输出 -->
+    <!-- 以下每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志-->
+
+    <!-- 属性描述 scan：性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true scanPeriod:设置监测配置文件是否有修改的时间间隔，
+    如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。   debug:当此属性设置为true时，将打印出logback内部日志信息，
+    实时查看logback运行状态。默认值为false。 -->
     <!-- 定义参数常量 -->
     <!-- logger.trace("msg" logger.debug... -->
     <property name="log.level" value="debug"/>
@@ -83,7 +84,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-    <logger name="com.mk" level="${log.level}" additivity="true">
+    <logger name="com.yulaiz.fund.note" level="${log.level}" additivity="true">
         <!-- 文件输出 -->
         <appender-ref ref="debugAppender"/>
         <appender-ref ref="infoAppender"/>
@@ -98,4 +99,5 @@
         <appender-ref ref="infoAppender"/>
         <appender-ref ref="errorAppender"/>
     </root>
+    <!--    </springProfile>-->
 </configuration>
