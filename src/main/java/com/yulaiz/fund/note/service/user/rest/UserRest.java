@@ -27,27 +27,22 @@ public class UserRest {
     @RequestMapping(value = "/findUserByPhone", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public RestResponse findUserByPhone(@RequestParam String userPhone) {
-        log.info("==========>>ClassName: {}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[1].getMethodName());
+        log.info("==========>>ClassName:{}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[2].getMethodName());
         log.info("==========>>Params: userPhone:{}.", userPhone);
         UserEntity userEntity = this.userService.queryUserByPhone(userPhone);
-        if (userEntity == null) {
-            log.debug("无该用户");
-            userEntity = new UserEntity();
-            userEntity.setUserId(-1L);
-        }
         RestResponse response = RestResponseBuilder.createSuccessBuilder(userEntity).builder();
-        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[1].getMethodName(), JSONUtil.toJsonStr(response));
+        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[2].getMethodName(), JSONUtil.toJsonStr(response));
         return response;
     }
 
     @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse saveUser(@RequestBody UserEntity userEntity) {
-        log.info("==========>>ClassName: {}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[1].getMethodName());
+        log.info("==========>>ClassName:{}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[2].getMethodName());
         log.info("==========>>Params: UserEntity:{}.", JSONUtil.toJsonStr(userEntity));
         this.userService.saveUser(userEntity);
         RestResponse response = RestResponseBuilder.createSuccessBuilder().builder();
-        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[1].getMethodName(), JSONUtil.toJsonStr(response));
+        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[2].getMethodName(), JSONUtil.toJsonStr(response));
         return response;
     }
 }

@@ -87,14 +87,6 @@
     </profiles>
     <build>
         <plugins>
-            <!--            <plugin>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--                &lt;!&ndash;没有该项配置，热部署不会起作用&ndash;&gt;-->
-            <!--                <configuration>-->
-            <!--                    <fork>true</fork>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
