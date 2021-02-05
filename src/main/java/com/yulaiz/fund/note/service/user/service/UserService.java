@@ -11,5 +11,10 @@ public interface UserService {
      */
     UserEntity queryUserByPhone(String userPhone);
 
+    /**
+     * 保存用户
+     *
+     * @param userEntity
+     */
     void saveUser(UserEntity userEntity);
 }
