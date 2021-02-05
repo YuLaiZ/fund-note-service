@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> userEntityOptional = this.userRepository.findOne(spec);
         return userEntityOptional.orElse(null);
     }
+
+    @Override
+    public void saveUser(UserEntity userEntity) {
+        this.userRepository.save(userEntity);
+    }
 }

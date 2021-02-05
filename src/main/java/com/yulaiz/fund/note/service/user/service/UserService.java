@@ -10,4 +10,6 @@ public interface UserService {
      * @return
      */
     UserEntity queryUserByPhone(String userPhone);
+
+    void saveUser(UserEntity userEntity);
 }

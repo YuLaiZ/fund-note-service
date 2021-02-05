@@ -9,6 +9,7 @@ import com.yulaiz.fund.note.service.user.service.UserService;
 import com.yulaiz.fund.note.service.utils.RestResponse;
 import com.yulaiz.fund.note.service.utils.RestResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +27,27 @@ public class UserRest {
     @RequestMapping(value = "/findUserByPhone", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public RestResponse findUserByPhone(@RequestParam String userPhone) {
-        log.info("---------->>ClassName: {}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[1].getMethodName());
-        log.info("---------->>Params: userPhone:{}.", userPhone);
+        log.info("==========>>ClassName: {}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[1].getMethodName());
+        log.info("==========>>Params: userPhone:{}.", userPhone);
         UserEntity userEntity = this.userService.queryUserByPhone(userPhone);
+        if (userEntity == null) {
+            log.debug("无该用户");
+            userEntity = new UserEntity();
+            userEntity.setUserId(-1L);
+        }
         RestResponse response = RestResponseBuilder.createSuccessBuilder(userEntity).builder();
-        log.info("---------->>MethodName:{}, Rest:{}.", JSONUtil.toJsonStr(response));
+        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[1].getMethodName(), JSONUtil.toJsonStr(response));
+        return response;
+    }
+
+    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse saveUser(@RequestBody UserEntity userEntity) {
+        log.info("==========>>ClassName: {}. MethodName:{}.", this.getClass().getName(), ThreadUtil.getStackTrace()[1].getMethodName());
+        log.info("==========>>Params: UserEntity:{}.", JSONUtil.toJsonStr(userEntity));
+        this.userService.saveUser(userEntity);
+        RestResponse response = RestResponseBuilder.createSuccessBuilder().builder();
+        log.info("==========>>MethodName:{}, Rest:{}.", ThreadUtil.getStackTrace()[1].getMethodName(), JSONUtil.toJsonStr(response));
         return response;
     }
 }

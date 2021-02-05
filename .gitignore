@@ -34,3 +34,4 @@ build/
 
 ### special ###
 /src/main/resources/application-dev.yml
+/logs/

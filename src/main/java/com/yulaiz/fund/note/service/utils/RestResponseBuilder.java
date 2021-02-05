@@ -2,6 +2,7 @@ package com.yulaiz.fund.note.service.utils;
 
 public class RestResponseBuilder<T> {
     public static final String REST_RESPONSE_SUCCESS_CODE = "0";
+    public static final String REST_RESPONSE_SUCCESS_MESSAGE = "成功";
     public static final String REST_RESPONSE_FAIL_CODE = "-1";
     public static final String REST_RESPONSE_FAIL_MESSAGE = "失败";
 
@@ -11,8 +12,12 @@ public class RestResponseBuilder<T> {
         this.response = new RestResponse(code, message, data);
     }
 
+    public static <T> RestResponseBuilder createSuccessBuilder() {
+        return new RestResponseBuilder(REST_RESPONSE_SUCCESS_CODE, REST_RESPONSE_SUCCESS_MESSAGE, null);
+    }
+
     public static <T> RestResponseBuilder createSuccessBuilder(T data) {
-        return new RestResponseBuilder(REST_RESPONSE_SUCCESS_CODE, null, null);
+        return new RestResponseBuilder(REST_RESPONSE_SUCCESS_CODE, REST_RESPONSE_SUCCESS_MESSAGE, data);
     }
 
     public static RestResponseBuilder createSuccessBuilder(String code, String message) {

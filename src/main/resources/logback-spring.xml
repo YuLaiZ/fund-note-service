@@ -14,7 +14,7 @@
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="30"/>
     <!-- 定义日志文件 输入位置 -->
-    <property name="log.filePath" value="${catalina.base}/logs/webapps"/>
+    <property name="log.filePath" value="${LOG_PATH}/logs"/>
     <property name="log.pattern"
               value="%d{yyyy-MM-dd HH:mm:ss:SSS}[%thread]%-5level%logger{50}-%msg%n"/>
     <!-- 控制台设置,控制台输出日志-->
@@ -23,6 +23,25 @@
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
+    </appender>
+    <!-- INFO 级别的日志-->
+    <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 文件路径 -->
+        <file>${log.filePath}/info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 文件名称-->
+            <fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- 文件最大保存历史数量 -->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
     <!-- DEBAUG 级别的日志 -->
     <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 RollingFileAppender-->
@@ -41,29 +60,9 @@
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
-        <!-- 过滤器，只记录INFO级别的日志 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>DEBUG</level>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-    <!-- INFO 级别的日志-->
-    <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 文件路径 -->
-        <file>${log.filePath}/info.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 文件名称-->
-            <fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-            <!-- 文件最大保存历史数量 -->
-            <maxHistory>${log.maxHistory}</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${log.pattern}</pattern>
-        </encoder>
-
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMismatch>DENY</onMismatch>
+            <onMatch>ACCEPT</onMatch>
         </filter>
     </appender>
     <!-- ERROR 级别的日志-->
@@ -80,19 +79,21 @@
             <pattern>${log.pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 设置过滤级别 -->
             <level>ERROR</level>
+            <!-- 用于配置符合过滤条件的操作 -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 用于配置不符合过滤条件的操作 -->
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-    <logger name="com.yulaiz.fund.note" level="${log.level}" additivity="true">
-        <!-- 文件输出 -->
-        <appender-ref ref="debugAppender"/>
-        <appender-ref ref="infoAppender"/>
-        <appender-ref ref="errorAppender"/>
-        <appender-ref ref="consoleAppender"/>
-    </logger>
-    <!-- root级别   DEBUG -->
-    <root level="info">
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type" level="TRACE"/>
+
+    <!-- root级别 -->
+    <root>
         <!-- 控制台输出 -->
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="debugAppender"/>

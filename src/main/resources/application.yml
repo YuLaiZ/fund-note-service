@@ -18,8 +18,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
     open-in-view: false
 
 logging:
   config: classpath:logback-spring.xml
+  file:
+    path:
