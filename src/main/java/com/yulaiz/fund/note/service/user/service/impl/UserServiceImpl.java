@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
         Spec<UserEntity> spec = (root, predicates, criteriaBuilder) -> {
             predicates.add(criteriaBuilder.equal(root.get(UserEntity_.userPhone), userPhone));
         };
-        Optional<UserEntity> userEntityOptional = this.userRepository.findOne(spec);
-        return userEntityOptional.orElse(null);
+        Optional<UserEntity> entity = this.userRepository.findOne(spec);
+        return entity.orElse(null);
     }
 
     /**

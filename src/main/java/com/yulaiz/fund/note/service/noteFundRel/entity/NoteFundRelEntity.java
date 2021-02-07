@@ -15,21 +15,33 @@ import java.util.Date;
 @Entity
 @Table(name = "fn_note_fund_rel")
 public class NoteFundRelEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "rel_id")
-	private Long relId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "rel_id")
+    private Long relId;
 
-	@Column(name = "note_id")
-	private Long noteId;
+    @Column(name = "note_id")
+    private Long noteId;
 
-	@Column(name = "fund_id")
-	private Long fundId;
+    @Column(name = "fund_id")
+    private Long fundId;
 
-	@Column(name = "hold_status")
-	private Long holdStatus;
+    @Column(name = "fund_code")
+    private String fundCode;
 
-	@Column(name = "update_time")
-	private Date updateTime;
+    @Column(name = "hold_status")
+    private Long holdStatus;
+
+    @Column(name = "purchasing_cost")
+    private Long purchasingCost;
+
+    @Column(name = "hold_share")
+    private Long holdShare;
+
+    @Column(name = "unit_cost")
+    private Long unitCost;
+
+    @Column(name = "update_time")
+    private Date updateTime;
 
 }
