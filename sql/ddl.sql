@@ -1,32 +1,41 @@
-create table if not exists fn_fund
+drop table if exists fn_fund;
+create table fn_fund
 (
     fund_id     int(32) auto_increment comment '基金ID'
         primary key,
+    fund_code   varchar(6)   null comment '基金代码',
     fund_name   varchar(128) null comment '基金名称',
     fund_type   int(3)       null comment '基金类型(1-普通开放式公募基金,2-货币基金,3-QDII基金)',
-    update_time datetime     null comment '更新时间'
+    update_time datetime     null comment '更新时间',
+    index fn_fund_code (fund_code)
 ) comment '基金表';
 
+drop table if exists fn_fund_history;
 create table if not exists fn_fund_history
 (
     fund_id     int(32) auto_increment comment '基金ID'
         primary key,
+    fund_code   varchar(6) null comment '基金代码',
     fund_date   date       null comment '净值日期',
     fund_net    varchar(6) null comment '净值',
     update_time datetime   null comment '更新时间',
+    index fn_fund_history_code (fund_code),
     index fn_fund_history_date (fund_date)
 ) comment '基金净值表';
 
+drop table if exists fn_note;
 create table if not exists fn_note
 (
-    note_id     int(32) auto_increment comment '账本ID'
+    note_id            int(32) auto_increment comment '账本ID'
         primary key,
-    user_id     int(32)     null comment '用户ID',
-    note_name   varchar(64) null comment '账本名称',
-    create_time datetime    null comment '创建时间',
+    user_id            int(32)     null comment '用户ID',
+    note_name          varchar(64) null comment '账本名称',
+    create_time        datetime    null comment '创建时间',
+    modify_record_time datetime    null comment '账本内最后一次更新记录的时间',
     index fn_note_user (user_id)
 ) comment '账本表';
 
+drop table if exists fn_note_fund_record;
 create table if not exists fn_note_fund_record
 (
     record_id         int(32) auto_increment comment '记录ID'
@@ -45,6 +54,7 @@ create table if not exists fn_note_fund_record
     index fn_note_fund_record_fund (fund_id)
 ) comment '账本基金关联';
 
+drop table if exists fn_note_fund_rel;
 create table if not exists fn_note_fund_rel
 (
     rel_id      int(32) auto_increment comment '关系ID'
@@ -56,6 +66,7 @@ create table if not exists fn_note_fund_rel
     index fn_note_fund_rel_note (note_id)
 ) comment '账本基金关联';
 
+drop table if exists fn_user;
 create table if not exists fn_user
 (
     user_id     int(32) auto_increment comment '用户ID'

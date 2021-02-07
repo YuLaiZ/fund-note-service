@@ -1,4 +1,4 @@
-package com.yulaiz.fund.note.service.fund.entity;
+package com.yulaiz.fund.note.service.fundHistory.entity;
 
 import lombok.Data;
 
@@ -13,8 +13,8 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "fn_fund")
-public class FundEntity implements Serializable {
+@Table(name = "fn_fund_history")
+public class FundHistoryEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fund_id")
@@ -23,11 +23,11 @@ public class FundEntity implements Serializable {
     @Column(name = "fund_code")
     private String fundCode;
 
-    @Column(name = "fund_name")
-    private String fundName;
+    @Column(name = "fund_date")
+    private Date fundDate;
 
-    @Column(name = "fund_type")
-    private Long fundType;
+    @Column(name = "fund_net")
+    private String fundNet;
 
     @Column(name = "update_time")
     private Date updateTime;

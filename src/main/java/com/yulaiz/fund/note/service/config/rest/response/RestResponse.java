@@ -1,4 +1,4 @@
-package com.yulaiz.fund.note.service.utils;
+package com.yulaiz.fund.note.service.config.rest.response;
 
 import lombok.Data;
 

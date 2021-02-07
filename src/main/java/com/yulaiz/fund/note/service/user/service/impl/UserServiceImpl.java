@@ -5,7 +5,7 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.yulaiz.fund.note.service.exception.FundNoteException;
+import com.yulaiz.fund.note.service.config.exception.FundNoteException;
 import com.yulaiz.fund.note.service.user.dao.UserRepository;
 import com.yulaiz.fund.note.service.user.entity.UserEntity;
 import com.yulaiz.fund.note.service.user.entity.UserEntity_;

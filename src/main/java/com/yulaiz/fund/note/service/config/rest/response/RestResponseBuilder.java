@@ -1,4 +1,4 @@
-package com.yulaiz.fund.note.service.utils;
+package com.yulaiz.fund.note.service.config.rest.response;
 
 public class RestResponseBuilder<T> {
     public static final String REST_RESPONSE_SUCCESS_CODE = "0";
@@ -30,6 +30,10 @@ public class RestResponseBuilder<T> {
 
     public static RestResponseBuilder createFailBuilder() {
         return new RestResponseBuilder(REST_RESPONSE_FAIL_CODE, REST_RESPONSE_FAIL_MESSAGE, null);
+    }
+
+    public static RestResponseBuilder createFailBuilder(String message) {
+        return new RestResponseBuilder(REST_RESPONSE_FAIL_CODE, message, null);
     }
 
     public static RestResponseBuilder createFailBuilder(String code, String message) {

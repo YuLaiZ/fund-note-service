@@ -1,4 +1,4 @@
-package com.yulaiz.fund.note.service.exception;
+package com.yulaiz.fund.note.service.config.exception;
 
 public class FundNoteException extends RuntimeException {
     public FundNoteException() {
