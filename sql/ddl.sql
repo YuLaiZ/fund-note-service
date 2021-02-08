@@ -23,6 +23,19 @@ create table if not exists fn_fund_value
     index fn_fund_value_date (fund_date)
 ) comment '基金净值表';
 
+drop table if exists fn_fund_valuation;
+create table if not exists fn_fund_valuation
+(
+    fund_id        int(32) auto_increment comment '基金ID'
+        primary key,
+    fund_code      varchar(6) null comment '基金代码',
+    valuation_date date       null comment '估算日期',
+    fund_valuation varchar(6) null comment '估值',
+    update_time    datetime   null comment '更新时间',
+    index fn_fund_value_code (fund_code),
+    index fn_fund_value_date (valuation_date)
+) comment '基金估值表';
+
 drop table if exists fn_note;
 create table if not exists fn_note
 (
@@ -30,6 +43,8 @@ create table if not exists fn_note
         primary key,
     user_id            int(32)     null comment '用户ID',
     note_name          varchar(64) null comment '账本名称',
+    holding_cost       bigint      null comment '持仓成本(分)',
+    total_assets       bigint      null comment '总资产(分)',
     create_time        datetime    null comment '创建时间',
     modify_record_time datetime    null comment '账本内最后一次更新记录的时间',
     index fn_note_user (user_id)

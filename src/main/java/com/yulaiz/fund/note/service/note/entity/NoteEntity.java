@@ -26,6 +26,12 @@ public class NoteEntity implements Serializable {
     @Column(name = "note_name")
     private String noteName;
 
+    @Column(name = "holding_cost")
+    private String holdingCost;
+
+    @Column(name = "total_assets")
+    private String totalAssets;
+
     @Column(name = "create_time")
     private Date createTime;
 
